@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskWave</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22red%22><path d=%22M3 6L5 6 21 6 21 8 5 8 3 8zM5 19C5 18.45 5.45 18 6 18L18 18C18.55 18 19 18.45 19 19C19 19.55 18.55 20 18 20L6 20C5.45 20 5 19.55 5 19zM5 16C5 15.45 5.45 15 6 15L18 15C18.55 15 19 15.45 19 16C19 16.55 18.55 17 18 17L6 17C5.45 17 5 16.55 5 16zM5 13C5 12.45 5.45 12 6 12L18 12C18.55 12 19 12.45 19 13C19 13.55 18.55 14 18 14L6 14C5.45 14 5 13.55 5 13zM5 10C5 9.45 5.45 9 6 9L18 9C18.55 9 19 9.45 19 10C19 10.55 18.55 11 18 11L6 11C5.45 11 5 10.55 5 10z%22></svg>" />
+  </head>
+  <body>
+    <div class="todo-container">
+      <h1>TaskWave</h1>
+      <input type="text" id="todo-input" placeholder="Ajouter une tâche..." />
+      <button id="add-todo-button" type="button" name="add-todo">Ajouter</button>
+      <button id="save-todo-button" type="button" name="save-todo">Sauvegarder</button>
+      <button id="load-todo-button" type="button" name="load-todo">Charger</button>
+    </div>
+    <div>
+      <ul id="todo-list"></ul>
+    </div>
+
+    <!-- Modal for editing tasks -->
+    <div id="edit-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Modifier la tâche</h2>
+        <label for="edit-todo-title">Titre de la tâche :</label>
+        <input type="text" id="edit-todo-title" />
+        <label for="edit-todo-container">Sous tâche :</label>
+        <div id="edit-subtasks-container"></div>
+        <button id="add-subtask-button-modal" type="button" name="add-subtask">Ajouter une sous-tâche</button>
+        <button id="save-edit-button" type="button" name="save-edit">Enregistrer</button>
+      </div>
+    </div>
+
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>

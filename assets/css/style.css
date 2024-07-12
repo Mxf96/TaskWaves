@@ -1,0 +1,338 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin: 0;;
+    background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(253,187,45,1) 100%);
+    padding-top: 50px;
+    
+}
+
+.todo-container {
+    background: linear-gradient(135deg, #ffcc33, #ff9966);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    width: 320px;
+    text-align: center;
+    color: #000000; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+h1 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+#todo-input {
+    background: #fbff07a1;
+    width: calc(100% - 80px);
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border 0.3s, box-shadow 0.3s;
+    color: white; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+#todo-input::placeholder {
+    color: #fff;
+}
+
+#todo-input:focus {
+    border: 2px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#add-todo-button,
+#save-todo-button,
+#load-todo-button {
+    padding: 10px 20px;
+    margin: 20px 0 5px 0;
+    background-color: #fbff07a1;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: 600;
+    color: white; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+#add-todo-button:hover,
+#load-todo-button:hover,
+#save-todo-button:hover {
+    background-color: #fbff07e4;
+    transform: scale(1.05);
+}
+
+#todo-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.todo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 150px;
+    background-color: #ffeb3b;
+    padding: 10px;
+    border: 2px solid #fbc02d;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: black; 
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.todo-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.todo-item.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 0;
+    visibility: hidden;
+}
+
+.todo-item:hover .button-container {
+    visibility: visible;
+}
+
+.delete-button,
+.add-subtask-button,
+.edit-button,
+.complete-button {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.delete-button {
+    color: #d32f2f;
+}
+
+.delete-button:before {
+    content: '✖';
+}
+
+.add-subtask-button {
+    color: #007bff;
+}
+
+.add-subtask-button:before {
+    content: '➕';
+}
+
+.edit-button {
+    color: #ff9900;
+}
+
+.edit-button:before {
+    content: '🖉';
+}
+
+.complete-button {
+    color: #28a745;
+}
+
+.complete-button:before {
+    content: '✔';
+}
+
+span {
+    margin-top: 15px;
+    font-weight: 600;
+    color: white; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.subtask-container {
+    margin-top: 10px;
+    width: 100%;
+    color: black; 
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+}
+
+.subtask {
+    font-size: 12px;
+    margin-left: 0;
+    margin-bottom: 5px;
+}
+
+.subtask.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #ffcc33, #ff9966);
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease;
+    color: white; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#edit-todo-title {
+    width: calc(100% - 30px);
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #fbff07a1;
+    color: white; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+#edit-todo-title::placeholder {
+    color: #fff;
+}
+
+#edit-todo-title:focus {
+    border: 2px solid #fff;
+}
+
+#edit-subtasks-container {
+    margin-bottom: 10px;
+}
+
+.edit-subtask-container {
+    display: flex;
+    align-items: center;
+}
+
+#edit-subtasks-container input {
+    margin: 5px 0;
+    width: calc(100% - 50px);
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #fbff07a1;
+    color: white; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+#edit-subtasks-container input::placeholder {
+    color: #fff;
+}
+
+#edit-subtasks-container input:focus {
+    border: 2px solid #fff;
+}
+
+.subtask-button {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.subtask-button.delete {
+    color: #d32f2f;
+}
+
+.subtask-button.delete:before {
+    content: '✖';
+}
+
+#add-subtask-button-modal,
+#save-edit-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #fb6d98;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: 600;
+    color: white; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+#add-subtask-button-modal:hover,
+#save-edit-button:hover {
+    background-color: #fa2a69;
+    transform: scale(1.05);
+}
+
+#save-edit-button {
+    background-color: #fbff07a1;
+}
+
+#save-edit-button:hover {
+    background-color: #fbff07a1;
+}
